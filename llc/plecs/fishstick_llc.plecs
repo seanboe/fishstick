@@ -28,15 +28,16 @@ Plecs {
   AlgebraicLoopWithStateMachineMsg "3"
   AssertionAction "1"
   FixedPointDatatypeOverride "1"
-  InitializationCommands "%% Electrical\n\nV_DC = 400;\t\t     %[V]\nn_prim = "
-"10;\nn_sndry = 1;\n\n%Primary Side\nL_r = 40e-6;\t\t\t  %[H]\nL_m = 160e-6;\t"
-"\t  %[H]\nC_r = 2e-9;\t\t\t  %[F]\n\n%Secondary Side\nC_o = 100e-6;\t\t  %[F]"
-"\nC_v_init = 0;\t\t  %[V]\nR_o = 2.5;\t\t\t  %[Ohm]\nESR = 15e-3;\t\t     %[O"
-"hm]\nVF = 0.5;\n\nV_out_desired = 20; %[V]\n\n%% Controller\n\nR1 = 19.7e3;\n"
-"R2 = R1/3;\n\nV_ref = V_out_desired * R2 / (R1 + R2); % reference voltage\n\n"
-"%% Type 2 Compensator\nType2.wz1 = 2*pi*7e3; % frequency of type2 zero\nType2"
-".wp0 = 2.8e3; % DC gain of type 2 compensator\nType2.wp1 = 2*pi*12e3; % frequ"
-"ency of type2 pole"
+  InitializationCommands "%% Electrical\nV_DC = 400;\t\t     %[V]\nPout_max = "
+"150;    % Maximum output power\nPout_min = 50; \t % Minimum output power\nn_p"
+"rim = 10;\nn_sndry = 1;\n\n%Primary Side\nL_r = 40e-6;\t\t\t  %[H]\nL_m = 160"
+"e-6;\t\t  %[H]\nC_r = 2e-9;\t\t\t  %[F]\n\n%Secondary Side\nC_o = 100e-6;\t\t"
+"  %[F]\nC_v_init = 0;\t\t  %[V]\nR_o = 2.5;\t\t\t  %[Ohm]\nESR = 15e-3;\t\t  "
+"   %[Ohm]\nVF = 0.5;\n\nV_out_desired = 20; %[V]\n\n%% Controller\n\nR1 = 19."
+"7e3;\nR2 = R1/3;\n\nV_ref = V_out_desired * R2 / (R1 + R2); % reference volta"
+"ge\n\n%% Type 2 Compensator\nType2.wz1 = 2*pi*7e3; % frequency of type2 zero"
+"\nType2.wp0 = 2.5e3; % DC gain of type 2 compensator\nType2.wp1 = 2*pi*12e3; "
+"% frequency of type2 pole"
   InitialState  "1"
   SystemState   ""
   TaskingMode   "1"
@@ -62,8 +63,8 @@ Plecs {
   ScriptsDialogSplitterPos "0"
   Schematic {
     Location      [8, 61; 796, 865]
-    ZoomFactor    1.86789
-    SliderPosition [893, 195]
+    ZoomFactor    1.28335
+    SliderPosition [441, 164]
     ShowBrowser   off
     BrowserWidth  97
     Component {
@@ -84,7 +85,7 @@ Plecs {
       Type          Capacitor
       Name          "C2"
       Show          off
-      Position      [645, 335]
+      Position      [635, 335]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -282,10 +283,11 @@ Plecs {
       Type          Resistor
       Name          "R1"
       Show          off
-      Position      [710, 315]
+      Position      [690, 315]
       Direction     up
       Flipped       off
-      LabelPosition east
+      LabelPosition northeast
+      CommentOut    DisabledOpenCircuit
       Parameter {
         Variable      "R"
         Value         "R_o"
@@ -707,7 +709,7 @@ Plecs {
       Type          Resistor
       Name          "R2"
       Show          off
-      Position      [645, 300]
+      Position      [635, 300]
       Direction     up
       Flipped       off
       LabelPosition east
@@ -755,7 +757,7 @@ Plecs {
       Type          Ammeter
       Name          "Am1"
       Show          off
-      Position      [675, 275]
+      Position      [655, 275]
       Direction     left
       Flipped       off
       LabelPosition south
@@ -764,15 +766,15 @@ Plecs {
       Type          Scope
       Name          "Scope"
       Show          on
-      Position      [845, 255]
+      Position      [900, 255]
       Direction     up
       Flipped       off
       LabelPosition south
-      Location      [738, 59; 1432, 651]
+      Location      [797, 59; 1432, 651]
       State         "AAAA/wAAAAD9AAAAAgAAAAEAAAC0AAACLfwCAAAAA/sAAAAQAFoAbwBvA"
 "G0AQQByAGUAYQAAAAAA/////wAAAIQA////+wAAABQAUwBhAHYAZQBkAFYAaQBlAHcAcwAAAAAA//"
 "///wAAAGYA////+wAAAAwAVAByAGEAYwBlAHMAAAAAHAAAAi0AAABmAP///wAAAAMAAALEAAAApPw"
-"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAAAsQAAABCAP///wAAArYAAAI0AAAA"
+"BAAAAAfsAAAAUAEQAYQB0AGEAVwBpAGQAZwBlAHQAAAAAAAAAAsQAAABCAP///wAAAnsAAAI0AAAA"
 "BAAAAAQAAAAIAAAACPwAAAABAAAAAgAAAAEAAAAOAFQAbwBvAGwAQgBhAHIBAAAAAP////8AAAAAA"
 "AAAAA=="
       SavedViews    "AAAAAgAAAAA="
@@ -868,7 +870,7 @@ Plecs {
       Type          PlecsProbe
       Name          "VCO input"
       Show          on
-      Position      [750, 225]
+      Position      [830, 225]
       Direction     left
       Flipped       on
       LabelPosition north
@@ -1761,10 +1763,10 @@ Plecs {
       Type          CurrentSource
       Name          "I"
       Show          on
-      Position      [800, 160]
-      Direction     down
+      Position      [715, 315]
+      Direction     up
       Flipped       on
-      LabelPosition east
+      LabelPosition west
       Parameter {
         Variable      "DiscretizationBehavior"
         Value         "2"
@@ -1773,6 +1775,45 @@ Plecs {
       Parameter {
         Variable      "StateSpaceInlining"
         Value         "1"
+        Show          off
+      }
+    }
+    Component {
+      Type          PulseGenerator
+      Name          "Load Step"
+      Show          on
+      Position      [710, 195]
+      Direction     right
+      Flipped       off
+      LabelPosition south
+      Parameter {
+        Variable      "Hi"
+        Value         "0.5"
+        Show          off
+      }
+      Parameter {
+        Variable      "Lo"
+        Value         "Pout_max / V_out_desired"
+        Show          off
+      }
+      Parameter {
+        Variable      "f"
+        Value         "1/0.02"
+        Show          off
+      }
+      Parameter {
+        Variable      "DutyCycle"
+        Value         "0.5"
+        Show          off
+      }
+      Parameter {
+        Variable      "Delay"
+        Value         "0"
+        Show          off
+      }
+      Parameter {
+        Variable      "DataType"
+        Value         "10"
         Show          off
       }
     }
@@ -1804,13 +1845,20 @@ Plecs {
       SrcTerminal   4
       Points        [555, 315]
       Branch {
-        Points        [620, 315; 620, 355; 645, 355]
+        Points        [620, 315; 620, 355; 635, 355]
         Branch {
-          Points        [710, 355]
+          Points        [690, 355]
           Branch {
-            Points        [770, 355]
-            DstComponent  "Vm3"
-            DstTerminal   2
+            Points        [715, 355]
+            Branch {
+              Points        [770, 355]
+              DstComponent  "Vm3"
+              DstTerminal   2
+            }
+            Branch {
+              DstComponent  "I"
+              DstTerminal   2
+            }
           }
           Branch {
             DstComponent  "R1"
@@ -1841,7 +1889,7 @@ Plecs {
       SrcTerminal   2
       Points        [610, 275]
       Branch {
-        Points        [645, 275]
+        Points        [635, 275]
         Branch {
           DstComponent  "Am1"
           DstTerminal   1
@@ -1859,12 +1907,20 @@ Plecs {
     }
     Connection {
       Type          Wire
-      SrcComponent  "Vm3"
-      SrcTerminal   1
-      Points        [770, 275; 710, 275]
+      SrcComponent  "Am1"
+      SrcTerminal   2
+      Points        [690, 275]
       Branch {
-        DstComponent  "Am1"
-        DstTerminal   2
+        Points        [715, 275]
+        Branch {
+          Points        [770, 275]
+          DstComponent  "Vm3"
+          DstTerminal   1
+        }
+        Branch {
+          DstComponent  "I"
+          DstTerminal   1
+        }
       }
       Branch {
         DstComponent  "R1"
@@ -1942,7 +1998,7 @@ Plecs {
       Type          Signal
       SrcComponent  "Am1"
       SrcTerminal   3
-      Points        [675, 255]
+      Points        [655, 255]
       DstComponent  "Scope"
       DstTerminal   2
     }
@@ -1950,7 +2006,7 @@ Plecs {
       Type          Signal
       SrcComponent  "VCO input"
       SrcTerminal   1
-      Points        [800, 225; 800, 245]
+      Points        [860, 225; 860, 245]
       DstComponent  "Scope"
       DstTerminal   1
     }
@@ -1992,7 +2048,7 @@ Plecs {
         DstTerminal   1
       }
       Branch {
-        Points        [800, 265]
+        Points        [855, 300; 855, 265]
         DstComponent  "Scope"
         DstTerminal   3
       }
@@ -2191,6 +2247,14 @@ Plecs {
       SrcTerminal   2
       DstComponent  "Sum1"
       DstTerminal   2
+    }
+    Connection {
+      Type          Signal
+      SrcComponent  "Load Step"
+      SrcTerminal   1
+      Points        [755, 195; 755, 315]
+      DstComponent  "I"
+      DstTerminal   3
     }
     Annotation {
       Name          "<html><body>\n<p><span style=\" font-size:14px; font-weig"
