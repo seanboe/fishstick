@@ -1,0 +1,6 @@
+# Claude Code / Claude-specific files
+CLAUDE.md
+CLAUDE.local.md
+.claude/
+.claude.json
+.mcp.json
