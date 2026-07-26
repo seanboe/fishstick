@@ -4,3 +4,4 @@ CLAUDE.local.md
 .claude/
 .claude.json
 .mcp.json
+.DS_Store
